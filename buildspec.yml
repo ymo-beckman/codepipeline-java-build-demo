@@ -1,0 +1,12 @@
+version: 0.1
+
+phases:
+  build:
+    commands:
+      - mvn test
+  post_build:
+    commands:
+      - mvn package -DskipTests=true
+artifacts:
+  files:
+    - target/pipeline-demo-0.0.1-SNAPSHOT.jar
