@@ -2,7 +2,7 @@ version: 0.1
 
 env:
   secrets-manager:
-    LOGIN: code-pipeline-sonarqube-cloud-demo:sonartoken
+    LOGIN: code-pipeline-sonarqube-cloud-demo:sornatoken
     HOST: code-pipeline-sonarqube-cloud-demo:HOST
     Organization: code-pipeline-sonarqube-cloud-demo:Organization
     Project: code-pipeline-sonarqube-cloud-demo:Project
