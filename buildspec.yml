@@ -1,6 +1,17 @@
 version: 0.1
 
+env:
+  secrets-manager:
+    LOGIN: code-pipeline-sonarqube-cloud-demo:sonartoken
+    HOST: code-pipeline-sonarqube-cloud-demo:HOST
+    Organization: code-pipeline-sonarqube-cloud-demo:Organization
+    Project: code-pipeline-sonarqube-cloud-demo:Project
 phases:
+  pre_build:
+    commands:
+      - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
+      - sleep 5
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
   build:
     commands:
       - mvn test
