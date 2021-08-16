@@ -9,11 +9,9 @@ env:
 phases:
   pre_build:
     commands:
-      - keytool -import -v -trustcacerts -alias sonarqube -file ca_bundle.crt -keystore ${JAVA_HOME}/jre/lib/security/cacerts -noprompt -storepass changeit
-      - sleep 5
       - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
       - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
+      - curl $HOST/api/qualitygates/project_status?projectKey=$Project >result.json
   build:
     commands:
       - mvn test
