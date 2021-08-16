@@ -9,7 +9,7 @@ env:
 phases:
   pre_build:
     commands:
-      - keytool -import -v -trustcacerts -alias sonarqube -file certificate.crt -keystore ${JAVA_HOME}/jre/lib/security/cacerts -noprompt -storepass changeit
+      - keytool -import -v -trustcacerts -alias sonarqube -file certificate.crt -keystore ${JAVA_HOME}/lib/security/cacerts -noprompt -storepass changeit
       - sleep 5
       - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
   build:
