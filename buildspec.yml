@@ -18,8 +18,9 @@ phases:
   post_build:
     commands:
       - aws s3 cp $CertS3Uri $CertFileName
+      - sleep 2
       - keytool -import -v -trustcacerts -alias sonarqube -file $CertFileName -keystore ${JAVA_HOME}/lib/security/cacerts -noprompt -storepass changeit
-      - sleep 5
+      - sleep 2
       - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
 artifacts:
   files:
