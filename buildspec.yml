@@ -6,7 +6,6 @@ env:
     HOST: code-pipeline-sonarqube-cloud-demo:HOST
     Organization: code-pipeline-sonarqube-cloud-demo:Organization
     Project: code-pipeline-sonarqube-cloud-demo:Project
-    CertFileName: code-pipeline-sonarqube-cloud-demo:cert_file_name
     CertS3Uri: code-pipeline-sonarqube-cloud-demo:cert_s3_uri
 phases:
   pre_build:
@@ -17,9 +16,9 @@ phases:
       - mvn package -DskipTests=true
   post_build:
     commands:
-      - aws s3 cp $CertS3Uri $CertFileName
+      - aws s3 cp $CertS3Uri cert.crt
       - sleep 2
-      - keytool -import -v -trustcacerts -alias sonarqube -file $CertFileName -keystore ${JAVA_HOME}/lib/security/cacerts -noprompt -storepass changeit
+      - keytool -import -v -trustcacerts -alias sonarqube -file cert.crt -keystore ${JAVA_HOME}/lib/security/cacerts -noprompt -storepass changeit
       - sleep 2
       - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
 artifacts:
