@@ -7,7 +7,7 @@ env:
     Organization: code-pipeline-sonarqube-cloud-demo:Organization
     Project: code-pipeline-sonarqube-cloud-demo:Project
     CertFileName: code-pipeline-sonarqube-cloud-demo:cert_file_name
-    CertS3Uri: cert_s3_uri
+    CertS3Uri: code-pipeline-sonarqube-cloud-demo:cert_s3_uri
 phases:
   pre_build:
     commands:
