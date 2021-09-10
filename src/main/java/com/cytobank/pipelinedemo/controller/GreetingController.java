@@ -22,6 +22,7 @@ public class GreetingController {
     @ApiOperation("获取欢迎信息")
     @GetMapping("")
     public ResponseEntity<String> greeting() {
+        String str = null;
         return new ResponseEntity<>("Hello codepipeline.", HttpStatus.OK);
     }
 
